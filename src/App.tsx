@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import classes from './App.module.css';
+import Sidebar from './components/Sidebar';
 
-function App() {
+const App: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+    <div className={classes.mainContent} style={{ marginLeft: (open ? '240px' : '60px') }}>
+      <Sidebar open={open} setOpen={setOpen} />
+      <Switch>
+        <Route exact path={["/", "home"]}>
+        </Route>
+      </Switch>
     </div>
-  );
+    </Router>
+  )
 }
 
 export default App;
