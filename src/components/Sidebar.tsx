@@ -1,3 +1,4 @@
+import Button from '@material-ui/core/Button'
 import grey from '@material-ui/core/colors/grey'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Divider from '@material-ui/core/Divider'
@@ -7,18 +8,17 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import HomeIcon from '@material-ui/icons/Home'
 import FileCopyIcon from '@material-ui/icons/FileCopy'
+import HomeIcon from '@material-ui/icons/Home'
 import PowerIcon from '@material-ui/icons/Power'
-
 import clsx from 'clsx'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+
 
 export type SidebarProps = {
     open: boolean,
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
+const Sidebar: React.FC<any> = ({ open, setOpen, user, setUser, history }) => {
 
     const classes = useStyles();
     // eslint-disable-next-line
@@ -107,6 +107,12 @@ const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
 
     const route = (routeName: string) => {
         history.push(routeName);
+    }
+
+    const logout = () => {
+        localStorage.removeItem('userId');
+        setUser('');
+        history.push('/login');
     }
 
     return (
@@ -140,6 +146,9 @@ const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
                         ))}
                     </List>
 
+                    <Button variant="contained" onClick={() => { logout() }}>
+                        Logout
+                    </Button>
                 </Drawer>
             </CssBaseline>
         </div>
