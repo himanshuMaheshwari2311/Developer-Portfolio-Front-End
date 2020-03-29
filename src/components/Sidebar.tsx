@@ -20,6 +20,12 @@ import clsx from 'clsx'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
+
+import Typography from '@material-ui/core/Typography';
+import MenuIcon from '@material-ui/icons/Menu';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
+
 export type SidebarProps = {
     open: boolean,
     setOpen: (boolean: boolean) => void,
@@ -48,6 +54,19 @@ const useStyles = makeStyles((theme: Theme) =>
                 duration: theme.transitions.duration.enteringScreen,
             }),
         },
+        drawerPaper: {
+            width: drawerWidth,
+            backgroundColor : `#8E8D8A`
+        },
+        drawerHeader: {
+            display: 'flex',
+            alignItems: 'center',
+            padding: theme.spacing(0, 1),
+            // necessary for content to be below app bar
+            ...theme.mixins.toolbar,
+            justifyContent: 'flex-end',
+        },
+         
         menuButton: {
             marginRight: 36,
         },
@@ -95,15 +114,10 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
+const Sidebar: React.FC<any> = (props) => {
+    const history=[];
 
     const classes = useStyles();
-    // eslint-disable-next-line
-    const theme = useTheme();
-
-    const handleDrawerClose = () => {
-        setOpen(!open);
-    };
 
     const route = (routeName: string) => {
         history.push(routeName);
@@ -113,32 +127,28 @@ const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
         <div className={classes.root} >
             <CssBaseline>
                 <Drawer
-                    variant='permanent'
-                    className={clsx(classes.drawer, {
-                        [classes.drawerOpen]: open,
-                        [classes.drawerClose]: !open,
-                    })}
-                    classes={{
-                        paper: clsx(classes.paper, {
-                            [classes.drawerOpen]: open,
-                            [classes.drawerClose]: !open,
-                        }),
-                    }}
+                className={classes.drawer}
+                variant="persistent"
+                anchor="left"
+                open={props.open}
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
                 >
-                    <div className={classes.toolbar} style={{ background: grey[700] }}>
-                        <IconButton onClick={handleDrawerClose} style={{ color: 'white' }}>
-                            { open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                <div className={classes.toolbar} >
+                        <IconButton onClick={props.handleDrawerClose} style={{ color: 'white' }}>
+                            { props.open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                         </IconButton>
-                    </div>
-                    <Divider />
-                    <List >
-                        {[{ label: 'Home', component: <HomeIcon />, route: '/' }, { label: 'Account', component: <AccountBoxIcon />, route: '/account' }, { label: 'Profile', component: <FileCopyIcon />, route: '/profile' }, { label: 'Handles', component: <PowerIcon />, route: '/handles' }].map((listItem, index) => (
-                            <ListItem button key={index} style={{ color: 'white' }}>
-                                <ListItemIcon onClick={() => { route(listItem.route) }} style={{ color: 'white' }}>{listItem.component}</ListItemIcon>
-                                <ListItemText primary={listItem.label} />
-                            </ListItem>
-                        ))}
-                    </List>
+                </div>
+                <Divider />
+                <List >
+                    {[{ label: 'Home', component: <HomeIcon />, route: '/' }, { label: 'Account', component: <AccountBoxIcon />, route: '/account' }, { label: 'Profile', component: <FileCopyIcon />, route: '/profile' }, { label: 'Handles', component: <PowerIcon />, route: '/handles' }].map((listItem, index) => (
+                        <ListItem button key={index} style={{ color: 'white' }}>
+                            <ListItemIcon onClick={() => { route(listItem.route) }} style={{ color: 'white' }}>{listItem.component}</ListItemIcon>
+                            <ListItemText primary={listItem.label} />
+                        </ListItem>
+                    ))}
+                </List>
 
                 </Drawer>
             </CssBaseline>
