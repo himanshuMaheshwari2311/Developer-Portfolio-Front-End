@@ -145,10 +145,6 @@ const Sidebar: React.FC<any> = ({ open, setOpen, user, setUser, history }) => {
                             </ListItem>
                         ))}
                     </List>
-
-                    <Button variant="contained" onClick={() => { logout() }}>
-                        Logout
-                    </Button>
                 </Drawer>
             </CssBaseline>
         </div>

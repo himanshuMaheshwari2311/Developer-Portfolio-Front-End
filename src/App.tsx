@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import Body from './components/Body';
+import React, { useEffect } from 'react'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
+import Body from './components/Body'
+import Header from './shared/Header'
+
 
 const App: React.FC<RouteComponentProps> = ({ history }) => {
 
@@ -19,7 +21,10 @@ const App: React.FC<RouteComponentProps> = ({ history }) => {
   }, [history])
 
   return (
-    <Body user={user} setUser={setUser} open={open} setOpen={setOpen} />
+    <div>
+      <Header user={user} setUser={setUser} open={open} setOpen={setOpen}></Header>
+      <Body user={user} setUser={setUser} open={open} setOpen={setOpen} />
+    </div>
   )
 }
 
