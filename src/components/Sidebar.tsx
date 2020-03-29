@@ -1,4 +1,3 @@
-import Button from '@material-ui/core/Button'
 import grey from '@material-ui/core/colors/grey'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Divider from '@material-ui/core/Divider'
@@ -107,12 +106,6 @@ const Sidebar: React.FC<any> = ({ open, setOpen, user, setUser, history }) => {
 
     const route = (routeName: string) => {
         history.push(routeName);
-    }
-
-    const logout = () => {
-        localStorage.removeItem('userId');
-        setUser('');
-        history.push('/login');
     }
 
     return (

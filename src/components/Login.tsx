@@ -39,7 +39,7 @@ const Login: React.FC<any> = ({ setUser, history }) => {
 
     return (
         <GoogleLogin
-            clientId="865958668201-3upung40a7uuidhh47hp34v91rggsgl8.apps.googleusercontent.com"
+            clientId="<client-id-here>"
             buttonText="Login"
             onSuccess={loginAction}
             onFailure={retryAction}
