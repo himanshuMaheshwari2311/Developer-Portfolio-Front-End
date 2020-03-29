@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
+const Sidebar: React.FC<any> = ({ open, setOpen, user, setUser, history }) => {
 
     const classes = useStyles();
     // eslint-disable-next-line
@@ -107,6 +107,12 @@ const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
 
     const route = (routeName: string) => {
         history.push(routeName);
+    }
+
+    const logout = () => {
+        localStorage.removeItem('userId');
+        setUser('');
+        history.push('/login');
     }
 
     return (
