@@ -1,70 +1,32 @@
-import React from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import classes from './App.module.css';
-import Sidebar from './components/Sidebar';
-import Header from './shared/Header';
-import Home from './components/Home';
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-}));
+import React, { useEffect } from 'react'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
+import Body from './components/Body'
+import Header from './shared/Header'
 
 
-
-const App: React.FC = () => {
+const App: React.FC<RouteComponentProps> = ({ history }) => {
 
   const [open, setOpen] = React.useState(false);
-  
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+  const [user, setUser] = React.useState('');
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (userId == null) {
+      history.push("/login");
+    }
+    else {
+      setUser(userId);
+      history.push("/");
+    }
+  }, [history])
 
   return (
-    <Router>
-    <Header open={open} handleDrawerClose={handleDrawerClose} handleDrawerOpen={handleDrawerOpen} ></Header>
-    <div className={classes.mainContent} style={{ marginLeft: (open ? '240px' : '60px') }}>
-    <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <Home></Home>
-    </main>
-    
-      <Switch>
-        <Route exact path={["/", "home"]}>
-        </Route>
-      </Switch>
+    <div>
+      <Header user={user} setUser={setUser} open={open} setOpen={setOpen}></Header>
+      <Body user={user} setUser={setUser} open={open} setOpen={setOpen} />
     </div>
-    </Router>
   )
 }
 
-export default App;
+export default withRouter(App);
