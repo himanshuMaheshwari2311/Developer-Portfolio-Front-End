@@ -1,23 +1,31 @@
-import React from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import classes from './App.module.css';
-import Sidebar from './components/Sidebar';
+import React, { useEffect } from 'react'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
+import Body from './components/Body'
+import Header from './shared/Header'
 
-const App: React.FC = () => {
+
+const App: React.FC<RouteComponentProps> = ({ history }) => {
+
   const [open, setOpen] = React.useState(false);
+  const [user, setUser] = React.useState('');
 
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (userId == null) {
+      history.push("/login");
+    }
+    else {
+      setUser(userId);
+      history.push("/");
+    }
+  }, [history])
 
   return (
-    <Router>
-    <div className={classes.mainContent} style={{ marginLeft: (open ? '240px' : '60px') }}>
-      <Sidebar open={open} setOpen={setOpen} />
-      <Switch>
-        <Route exact path={["/", "home"]}>
-        </Route>
-      </Switch>
+    <div>
+      <Header user={user} setUser={setUser} open={open} setOpen={setOpen}></Header>
+      <Body user={user} setUser={setUser} open={open} setOpen={setOpen} />
     </div>
-    </Router>
   )
 }
 
-export default App;
+export default withRouter(App);

@@ -7,18 +7,17 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles'
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import HomeIcon from '@material-ui/icons/Home'
 import FileCopyIcon from '@material-ui/icons/FileCopy'
+import HomeIcon from '@material-ui/icons/Home'
 import PowerIcon from '@material-ui/icons/Power'
-
 import clsx from 'clsx'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+
 
 export type SidebarProps = {
     open: boolean,
@@ -95,7 +94,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
+const Sidebar: React.FC<any> = ({ open, setOpen, user, setUser, history }) => {
 
     const classes = useStyles();
     // eslint-disable-next-line
@@ -139,7 +138,6 @@ const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
                             </ListItem>
                         ))}
                     </List>
-
                 </Drawer>
             </CssBaseline>
         </div>
