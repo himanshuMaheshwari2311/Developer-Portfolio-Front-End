@@ -1,4 +1,3 @@
-import grey from '@material-ui/core/colors/grey'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
@@ -13,7 +12,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import FileCopyIcon from '@material-ui/icons/FileCopy'
 import HomeIcon from '@material-ui/icons/Home'
-import PowerIcon from '@material-ui/icons/Power'
 import clsx from 'clsx'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
@@ -88,8 +86,11 @@ const useStyles = makeStyles((theme: Theme) =>
             padding: theme.spacing(3),
         },
         paper: {
-            background: grey[600],
-            color: grey[500]
+            background: theme.palette.primary.main,
+            color: theme.palette.secondary.main
+        },
+        iconButton: {
+            color: theme.palette.secondary.main,
         }
     })
 );
@@ -124,17 +125,17 @@ const Sidebar: React.FC<any> = ({ open, setOpen, user, setUser, history }) => {
                         }),
                     }}
                 >
-                    <div className={classes.toolbar} style={{ background: grey[700] }}>
-                        <IconButton onClick={handleDrawerClose} style={{ color: 'white' }}>
-                            { open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                    <div className={classes.toolbar}>
+                        <IconButton onClick={handleDrawerClose} className={classes.iconButton}>
+                            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                         </IconButton>
                     </div>
                     <Divider />
                     <List >
-                        {[{ label: 'Home', component: <HomeIcon />, route: '/' }, { label: 'Account', component: <AccountBoxIcon />, route: '/account' }, { label: 'Profile', component: <FileCopyIcon />, route: '/profile' }, { label: 'Handles', component: <PowerIcon />, route: '/handles' }].map((listItem, index) => (
-                            <ListItem button key={index} style={{ color: 'white' }}>
-                                <ListItemIcon onClick={() => { route(listItem.route) }} style={{ color: 'white' }}>{listItem.component}</ListItemIcon>
-                                <ListItemText primary={listItem.label} />
+                        {[{ label: 'Dashboard', component: <HomeIcon />, route: '/dashboard' }, { label: 'Account', component: <AccountBoxIcon />, route: '/account' }, { label: 'Profile', component: <FileCopyIcon />, route: '/profile' }].map((listItem, index) => (
+                            <ListItem button key={index} >
+                                <ListItemIcon onClick={() => { route(listItem.route) } } className={classes.iconButton}>{listItem.component}</ListItemIcon>
+                                <ListItemText primary={listItem.label} color="inherit" />
                             </ListItem>
                         ))}
                     </List>
