@@ -33,12 +33,15 @@ const useStyles = makeStyles((theme: Theme) =>
     hide: {
       display: 'none',
     },
-
     menuButton: {
       marginRight: theme.spacing(2),
+      color: theme.palette.secondary.main,
+    },
+    typography: {
+      color: theme.palette.secondary.main,
     },
     toolBar: {
-      backgroundColor: `#E89074`,
+      backgroundColor: theme.palette.primary.main,
       [theme.breakpoints.up('lg')]: {
         minHeight: `64px`,
       },
@@ -51,7 +54,6 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('md')]: {
         minHeight: `64px`,
       },
-
     }
   })
 );
@@ -74,7 +76,6 @@ const Header: React.FC<any> = ({ user, setUser, open, setOpen }) => {
         <Toolbar className={classes.toolBar} variant="dense">
           { user !== '' ?
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -85,7 +86,7 @@ const Header: React.FC<any> = ({ user, setUser, open, setOpen }) => {
             <MenuIcon />
           </IconButton>
           : null}
-          <Typography variant="h6" color="inherit">
+          <Typography variant="h5" className={classes.typography}>
             Developer Portfolio
           </Typography>
         </Toolbar>

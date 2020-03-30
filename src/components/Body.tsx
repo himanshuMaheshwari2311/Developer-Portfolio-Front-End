@@ -13,7 +13,7 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
       <div className={classes.mainContent} style={{ marginLeft: user !== '' ? (open ? '240px' : '60px') : '0px' }}>
         {userId === null ? null : <Sidebar open={open} setOpen={setOpen} />}
         <Switch>
-          <Route exact path={["/", "/home"]}>
+          <Route exact path={["/", "/home", '/dashboard', '/account', '/profile']}>
             <Home />
           </Route>
           <Route exact path="/login">
