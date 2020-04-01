@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   mainContent: {
     overflowX:`hidden`,
     //overflowY:`hidden`,
-    backgroundColor: `pink`,
+   // backgroundColor: `pink`,
     position: `relative`,
     display:`flex`,
     [theme.breakpoints.up('lg')]: {
