@@ -1,27 +1,48 @@
-import React from 'react';
+import { Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     '& > *': {
-      margin: theme.spacing(5),
-      width: theme.spacing(80),
-      height: theme.spacing(80),
+      margin: theme.spacing(3),
+      width: theme.spacing(150),
+      height: theme.spacing(50),
     },
+  },
+  card: {
+    boxShadow: '0 0 8px 0px rgba(0,0,0,0.87)',
+    background: theme.palette.primary.main,
+    '&:hover': {
+      boxShadow: '0 0 10px 2px rgba(0,0,0,0.87)',
+    },
+  },
+  avatar: {
+    backgroundColor: theme.palette.secondary.main,
   },
 }));
 
-const Home =() => {
+const Home = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Paper variant="outlined" />
-      <Paper variant="outlined" square />
+    <div>
+      <div className={classes.root}>
+        <Card variant="outlined" className={classes.card}>
+          
+        </Card>
+
+        <Card variant="outlined" className={classes.card} />
+      </div>
+      <div className={classes.root}>
+        <Card variant="outlined" className={classes.card} />
+        <Card variant="outlined" className={classes.card} />
+      </div>
+      <div></div>
     </div>
   );
 }
 
-export default Home;
+export default withRouter(Home);
