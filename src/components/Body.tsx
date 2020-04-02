@@ -6,6 +6,7 @@ import Sidebar from './Sidebar'
 import Home from './Home'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import ProfileIcons from './ProfileIcons'
 
 const useStyles = makeStyles(theme => ({
   root:{
@@ -18,11 +19,11 @@ const useStyles = makeStyles(theme => ({
    // backgroundColor: `pink`,
     position: `relative`,
     display:`flex`,
-    [theme.breakpoints.up('lg')]: {
-      marginTop : `64px`,
-      height: 'calc(100vh - 64px)'
-    }, 
-    [theme.breakpoints.up('xs')]: {
+    // [theme.breakpoints.up('lg')]: {
+    //   marginTop : `64px`,
+    //   height: 'calc(100vh - 64px)'
+    // }, 
+    [theme.breakpoints.down('xs')]: {
     marginTop : `54px`,
     height: 'calc(100vh - 54px)'
     } ,
@@ -30,10 +31,10 @@ const useStyles = makeStyles(theme => ({
     marginTop : `64px`,
     height: 'calc(100vh - 64px)'
     } ,   
-    [theme.breakpoints.up('md')]: {
-    marginTop : `64px`,
-    height: 'calc(100vh - 64px)'
-    } ,
+    // [theme.breakpoints.up('md')]: {
+    // marginTop : `64px`,
+    // height: 'calc(100vh - 64px)'
+    // } ,
   },
   content: {
     flexGrow: 1,
@@ -66,7 +67,8 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
         })} style={{  marginLeft: user !== '' ? (open ? '240px' : '60px') : '0px' }}>
         <Switch>
           <Route exact path={["/", "/home", '/dashboard', '/account', '/profile']}>
-            <Home />       
+            <ProfileIcons/>
+            {/* <Home />        */}
           </Route>
           <Route exact path="/login">
             <Login setUser={setUser} />
