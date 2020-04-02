@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 //import classes from '../App.module.css'
 import Login from './Login'
 import Sidebar from './Sidebar'
+import Dashboard from './Dashboard'
+import Profile from './Profile'
 import Home from './Home'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -65,11 +67,17 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
           [styles.contentShift]: open,
         })} style={{  marginLeft: user !== '' ? (open ? '240px' : '60px') : '0px' }}>
         <Switch>
-          <Route exact path={["/", "/home", '/dashboard', '/account', '/profile']}>
-            <Home />       
+          <Route exact path={["/", "/home", '/dashboard']}>
+            <Dashboard />
           </Route>
           <Route exact path="/login">
             <Login setUser={setUser} />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
+          </Route>
+          <Route exact path="/account">
+            <Home />
           </Route>
         </Switch>
         </div>

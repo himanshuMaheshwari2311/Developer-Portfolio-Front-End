@@ -1,4 +1,4 @@
-import React from 'react';
+import { Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import DashboardCard from './DashboardCard';
@@ -35,11 +35,9 @@ const Home: React.FC<any> = () => {
         <DashboardCard></DashboardCard>
         </Grid>
      </Grid>
-
-    
     </div>  
   );
 
 }
 
-export default Home;
+export default withRouter(Home);
