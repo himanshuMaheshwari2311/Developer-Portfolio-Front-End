@@ -91,6 +91,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         iconButton: {
             color: theme.palette.secondary.main,
+            fontSize: "24px",
         }
     })
 );
@@ -126,15 +127,15 @@ const Sidebar: React.FC<any> = ({ open, setOpen, user, setUser, history }) => {
                     }}
                 >
                     <div className={classes.toolbar}>
-                        <IconButton onClick={handleDrawerClose} className={classes.iconButton}>
-                            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        <IconButton onClick={handleDrawerClose} >
+                            {open ? <ChevronLeftIcon className={classes.iconButton}/> : <ChevronRightIcon className={classes.iconButton}/>}
                         </IconButton>
                     </div>
                     <Divider />
                     <List >
-                        {[{ label: 'Dashboard', component: <HomeIcon />, route: '/dashboard' }, { label: 'Account', component: <AccountBoxIcon />, route: '/account' }, { label: 'Profile', component: <FileCopyIcon />, route: '/profile' }].map((listItem, index) => (
+                        {[{ label: 'Dashboard', component: <HomeIcon className={classes.iconButton}/>, route: '/dashboard' }, { label: 'Account', component: <AccountBoxIcon className={classes.iconButton}/>, route: '/account' }, { label: 'Profile', component: <FileCopyIcon className={classes.iconButton}/>, route: '/profile' }].map((listItem, index) => (
                             <ListItem button key={index} >
-                                <ListItemIcon onClick={() => { route(listItem.route) } } className={classes.iconButton}>{listItem.component}</ListItemIcon>
+                                <ListItemIcon onClick={() => { route(listItem.route) } }>{listItem.component}</ListItemIcon>
                                 <ListItemText primary={listItem.label} color="inherit" />
                             </ListItem>
                         ))}
