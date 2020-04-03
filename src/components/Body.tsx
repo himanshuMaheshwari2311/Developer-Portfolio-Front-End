@@ -1,41 +1,30 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-//import classes from '../App.module.css'
 import Login from './Login'
 import Sidebar from './Sidebar'
 import Dashboard from './Dashboard'
-import Profile from './Profile'
 import Home from './Home'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import ProfileIcons from './ProfileIcons'
 
 const useStyles = makeStyles(theme => ({
   root:{
-    widht:`100%`,
-    height: `100%`
+    widht:'100%',
+    height: '100%'
   },
   mainContent: {
-    overflowX:`hidden`,
-    //overflowY:`hidden`,
-   // backgroundColor: `pink`,
-    position: `relative`,
-    display:`flex`,
-    [theme.breakpoints.up('lg')]: {
-      marginTop : `64px`,
-      height: 'calc(100vh - 64px)'
-    }, 
-    [theme.breakpoints.up('xs')]: {
-    marginTop : `54px`,
+    overflowX:'hidden',
+    position: 'relative',
+    display:'flex',
+    [theme.breakpoints.down('xs')]: {
+    marginTop : '54px',
     height: 'calc(100vh - 54px)'
     } ,
     [theme.breakpoints.up('sm')]: {
-    marginTop : `64px`,
+    marginTop : '64px',
     height: 'calc(100vh - 64px)'
-    } ,   
-    [theme.breakpoints.up('md')]: {
-    marginTop : `64px`,
-    height: 'calc(100vh - 64px)'
-    } ,
+    } , 
   },
   content: {
     flexGrow: 1,
@@ -74,7 +63,7 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
             <Login setUser={setUser} />
           </Route>
           <Route exact path="/profile">
-            <Profile />
+            <ProfileIcons />
           </Route>
           <Route exact path="/account">
             <Home />
