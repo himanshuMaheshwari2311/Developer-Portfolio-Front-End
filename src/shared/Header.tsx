@@ -1,12 +1,12 @@
 import AppBar from '@material-ui/core/AppBar';
+import IconButton from '@material-ui/core/IconButton';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import  MenuIcon from '@material-ui/icons/Menu'
-import IconButton from '@material-ui/core/IconButton';
 
 const drawerWidth = 240;
 
@@ -43,16 +43,16 @@ const useStyles = makeStyles((theme: Theme) =>
     toolBar: {
       backgroundColor: theme.palette.primary.main,
       [theme.breakpoints.up('lg')]: {
-        minHeight: `64px`,
+        minHeight: '64px',
       },
       [theme.breakpoints.up('xs')]: {
-        minHeight: `56px`,
+        minHeight: '56px',
       },
       [theme.breakpoints.up('sm')]: {
-        minHeight: `64px`,
+        minHeight: '64px',
       },
       [theme.breakpoints.up('md')]: {
-        minHeight: `64px`,
+        minHeight: '64px',
       },
     }
   })

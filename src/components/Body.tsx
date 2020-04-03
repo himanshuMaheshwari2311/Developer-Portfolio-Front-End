@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Login from './Login'
-import Sidebar from './Sidebar'
-import Dashboard from './Dashboard'
+import Sidebar from './sidebar/Sidebar'
+import Dashboard from './dashboard/Dashboard'
 import Home from './Home'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import ProfileIcons from './ProfileIcons'
+import ProfileIcons from './account/ProfileIcons'
 
 const useStyles = makeStyles(theme => ({
   root:{

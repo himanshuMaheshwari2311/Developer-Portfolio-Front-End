@@ -1,5 +1,5 @@
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
-import { cyan, grey, blue } from '@material-ui/core/colors'
+import { blue, grey } from '@material-ui/core/colors'
 import React, { useEffect } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import Body from './components/Body'

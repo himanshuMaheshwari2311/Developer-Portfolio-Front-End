@@ -4,8 +4,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons';
-import HighChartPie from './HighChartPie'
-import HighChartComponent from './HighChartComponent';
+import HighChartPie from './charts/HighChartPie'
+import HighChartComponent from './charts/HighChartComponent';
 
 const useStyles = makeStyles(theme => ({
     root: {

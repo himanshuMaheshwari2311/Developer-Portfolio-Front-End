@@ -1,6 +1,6 @@
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import DashboardCard from './DashboardCard';
+import DashboardCard from './dashboard/DashboardCard';
 import { withRouter } from 'react-router-dom';
 import React from 'react';
 
@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow:1,
   },
   gridContainer: {   
-    width:`100%`,
+    width:'100%',
   },
 
 }));

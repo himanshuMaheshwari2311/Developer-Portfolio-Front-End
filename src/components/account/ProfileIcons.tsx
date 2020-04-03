@@ -5,28 +5,28 @@ import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import github from './../assets/github.svg';
-import linkedin from './../assets/linkedin.svg';
-import medium from './../assets/medium.png';
-import stackoverflow from './../assets/stackoverflow.png';
+import github from './../../assets/github.svg';
+import linkedin from './../../assets/linkedin.svg';
+import medium from './../../assets/medium.png';
+import stackoverflow from './../../assets/stackoverflow.png';
 
 const useStyles = makeStyles((theme) => ({
     root:{
-        display: `block`,
-        minWidth: `100%`,
-        position: `inherit`,
+        display: 'block',
+        minWidth: '100%',
+        position: 'inherit',
     },
     iconsContainer: {
         display: 'flex',
         flexGrow: 1,
-        justifyContent: `center`,
-        alignItems: `center`,
+        justifyContent: 'center',
+        alignItems: 'center',
         padding: theme.spacing(3),
         [theme.breakpoints.up('xs')]: {
-            flexDirection: `row`
+            flexDirection: 'row'
         },
         [theme.breakpoints.down('sm')]: {
-            flexDirection: `column`,
+            flexDirection: 'column',
         },
     },
     icons: {
@@ -55,31 +55,31 @@ const useStyles = makeStyles((theme) => ({
             height: 120,
             margin: theme.spacing(2), 
         },     
-        filter: `blur(1px)`, 
-        border: `10px solid white`,
-        borderRadius: `50%`,
+        filter: 'blur(1px)', 
+        border: '10px solid white',
+        borderRadius: '50%',
 
-        outline: `none`,
-       // border: `1px solid #c0392b`,
-        color: `#c0392b`
+        outline: 'none',
+       // border: '1px solid #c0392b',
+        color: '#c0392b'
     },
 
     title:{
-        align: `center`,
-        fontSize: `1.7em`,
-        display: `block`,
-        textAlign: `center`,
+        align: 'center',
+        fontSize: '1.7em',
+        display: 'block',
+        textAlign: 'center',
         padding: theme.spacing(7),
         [theme.breakpoints.up('sm')]: {
             padding: theme.spacing(10), 
         },  
-        fontWeight: `bolder`,
-        whiteSpace: `inherit`
+        fontWeight: 'bolder',
+        whiteSpace: 'inherit'
     },
     button: {
-        float: `right`,
+        float: 'right',
         padding: theme.spacing(4),
-        marginRight: `50px`,
+        marginRight: '50px',
 
     }
 
@@ -88,18 +88,18 @@ const useStyles = makeStyles((theme) => ({
  const  ProfileIcons =() =>  {
     const styles = useStyles();  
     let [profilesSelected, setSelectedProfiles] = React.useState([] as any) ;    
-    let profileObject =[
-       {"url" :  github, "iconName": "Github"},
-       {"url" :  linkedin, "iconName": "Linkedin"},
-       {"url" :  medium, "iconName": "Medium"},
-       {"url" :  stackoverflow, "iconName": "Stackoverflow"},
-    ];
+    // let profileObject =[
+    //    {"url" :  github, "iconName": "Github"},
+    //    {"url" :  linkedin, "iconName": "Linkedin"},
+    //    {"url" :  medium, "iconName": "Medium"},
+    //    {"url" :  stackoverflow, "iconName": "Stackoverflow"},
+    // ];
 
     const clickProfileIcons = (event: any) =>{
         let newProfileSelected = event.target.alt;
          setSelectedProfiles((prevProfilesSelected : any[] )=> {
              if(prevProfilesSelected.includes(newProfileSelected))
-                return prevProfilesSelected.filter( profilesClicked  => profilesClicked != newProfileSelected)
+                return prevProfilesSelected.filter( profilesClicked  => profilesClicked !== newProfileSelected)
               else if(!prevProfilesSelected.includes(newProfileSelected))
                 return [...prevProfilesSelected, newProfileSelected]
         })
