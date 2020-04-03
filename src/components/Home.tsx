@@ -1,27 +1,43 @@
-import React from 'react';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import DashboardCard from './dashboard/DashboardCard';
+import { withRouter } from 'react-router-dom';
+import React from 'react';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(5),
-      width: theme.spacing(80),
-      height: theme.spacing(80),
-    },
+  gridRoot: {
+    flexGrow:1,
   },
+  gridContainer: {   
+    width:'100%',
+  },
+
 }));
 
-const Home =() => {
-  const classes = useStyles();
 
-  return (
-    <div className={classes.root}>
-      <Paper variant="outlined" />
-      <Paper variant="outlined" square />
-    </div>
+const Home: React.FC<any> = () => {
+  const classes = useStyles();
+  return (  
+    <div className={classes.gridRoot}>
+     <Grid container className={classes.gridContainer} spacing={2}>
+        <Grid item xs={12} sm={6} >
+        <DashboardCard></DashboardCard>
+        </Grid>
+        <Grid item xs={12} sm={6} >
+        <DashboardCard></DashboardCard>
+        </Grid>
+     </Grid>
+     <Grid container className={classes.gridContainer} spacing={2}>
+        <Grid item xs={12} sm={6} >
+        <DashboardCard></DashboardCard>
+        </Grid>
+        <Grid item xs={12} sm={6} >
+        <DashboardCard></DashboardCard>
+        </Grid>
+     </Grid>
+    </div>  
   );
+
 }
 
-export default Home;
+export default withRouter(Home);
