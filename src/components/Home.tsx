@@ -1,48 +1,43 @@
-import { Card } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import React from 'react';
+import DashboardCard from './DashboardCard';
 import { withRouter } from 'react-router-dom';
+import React from 'react';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(3),
-      width: theme.spacing(150),
-      height: theme.spacing(50),
-    },
+  gridRoot: {
+    flexGrow:1,
   },
-  card: {
-    boxShadow: '0 0 8px 0px rgba(0,0,0,0.87)',
-    background: theme.palette.primary.main,
-    '&:hover': {
-      boxShadow: '0 0 10px 2px rgba(0,0,0,0.87)',
-    },
+  gridContainer: {   
+    width:`100%`,
   },
-  avatar: {
-    backgroundColor: theme.palette.secondary.main,
-  },
+
 }));
 
-const Home = () => {
+
+const Home: React.FC<any> = () => {
   const classes = useStyles();
-
-  return (
-    <div>
-      <div className={classes.root}>
-        <Card variant="outlined" className={classes.card}>
-          
-        </Card>
-
-        <Card variant="outlined" className={classes.card} />
-      </div>
-      <div className={classes.root}>
-        <Card variant="outlined" className={classes.card} />
-        <Card variant="outlined" className={classes.card} />
-      </div>
-      <div></div>
-    </div>
+  return (  
+    <div className={classes.gridRoot}>
+     <Grid container className={classes.gridContainer} spacing={2}>
+        <Grid item xs={12} sm={6} >
+        <DashboardCard></DashboardCard>
+        </Grid>
+        <Grid item xs={12} sm={6} >
+        <DashboardCard></DashboardCard>
+        </Grid>
+     </Grid>
+     <Grid container className={classes.gridContainer} spacing={2}>
+        <Grid item xs={12} sm={6} >
+        <DashboardCard></DashboardCard>
+        </Grid>
+        <Grid item xs={12} sm={6} >
+        <DashboardCard></DashboardCard>
+        </Grid>
+     </Grid>
+    </div>  
   );
+
 }
 
 export default withRouter(Home);

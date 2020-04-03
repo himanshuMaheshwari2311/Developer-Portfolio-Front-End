@@ -54,6 +54,8 @@ const App: React.FC<RouteComponentProps> = ({ history }) => {
     }
   }, [history])
 
+ 
+
   return (
     <ThemeProvider theme={light}>
         <Header user={user} setUser={setUser} open={open} setOpen={setOpen}></Header>
