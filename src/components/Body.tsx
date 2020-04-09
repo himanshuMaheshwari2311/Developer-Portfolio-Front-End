@@ -7,24 +7,25 @@ import Home from './Home'
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import ProfileIcons from './account/ProfileIcons'
+import LandingPage from './LandingPage'
 
 const useStyles = makeStyles(theme => ({
-  root:{
-    widht:'100%',
+  root: {
+    widht: '100%',
     height: '100%'
   },
   mainContent: {
-    overflowX:'hidden',
+    overflowX: 'hidden',
     position: 'relative',
-    display:'flex',
+    display: 'flex',
     [theme.breakpoints.down('xs')]: {
-    marginTop : '54px',
-    height: 'calc(100vh - 54px)'
-    } ,
+      marginTop: '54px',
+      height: 'calc(100vh - 54px)'
+    },
     [theme.breakpoints.up('sm')]: {
-    marginTop : '64px',
-    height: 'calc(100vh - 64px)'
-    } , 
+      marginTop: '64px',
+      height: 'calc(100vh - 64px)'
+    },
   },
   content: {
     flexGrow: 1,
@@ -46,21 +47,26 @@ const useStyles = makeStyles(theme => ({
 
 const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
   const styles = useStyles();
-  
+
   const userId = localStorage.getItem("userId");
-  
-  return (    
-      <div className={styles.root} >
-        {userId === null ? null : <Sidebar open={open} setOpen={setOpen} />}
-        <div className={clsx(styles.mainContent,{
-          [styles.contentShift]: open,
-        })} style={{  marginLeft: user !== '' ? (open ? '240px' : '60px') : '0px' }}>
+
+  return (
+    <div className={styles.root} >
+      {userId === null ? null : <Sidebar open={open} setOpen={setOpen} />}
+      <div className={clsx(styles.mainContent, {
+        [styles.contentShift]: open,
+      })} style={{ marginLeft: user !== '' ? (open ? '240px' : '60px') : '0px' }}>
         <Switch>
           <Route exact path={["/", "/home", '/dashboard']}>
-            <Dashboard />
+            {userId !== null ?
+              <Dashboard />
+              :
+              <LandingPage />
+            }
           </Route>
           <Route exact path="/login">
-            <Login setUser={setUser} />
+            {/* <Login setUser={setUser} /> */}
+            <LandingPage/>
           </Route>
           <Route exact path="/profile">
             <ProfileIcons />
@@ -69,8 +75,8 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
             <Home />
           </Route>
         </Switch>
-        </div>
       </div>
+    </div>
   )
 }
 

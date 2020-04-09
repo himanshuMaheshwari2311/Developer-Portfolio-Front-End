@@ -6,9 +6,8 @@ import { withRouter } from 'react-router-dom';
 const Login: React.FC<any> = ({ setUser, history }) => {
 
     useEffect(() => {
-        console.log("Super log :: ",localStorage.getItem("userId"))
         if (localStorage.getItem("userId") != null) {
-            history.push("/");
+            history.push("/dashboard");
         }
     })
 

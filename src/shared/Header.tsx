@@ -1,12 +1,14 @@
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, fade } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { FormGroup, FormControlLabel, Switch, Button } from '@material-ui/core';
+import Login from '../components/Login';
 
 const drawerWidth = 240;
 
@@ -38,23 +40,24 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.secondary.main,
     },
     typography: {
+      flex: 1,
       color: theme.palette.secondary.main,
     },
     toolBar: {
       backgroundColor: theme.palette.primary.main,
       [theme.breakpoints.up('lg')]: {
-        minHeight: '64px',
+        minHeight: '54px',
       },
       [theme.breakpoints.up('xs')]: {
-        minHeight: '56px',
+        minHeight: '46px',
       },
       [theme.breakpoints.up('sm')]: {
-        minHeight: '64px',
+        minHeight: '54px',
       },
       [theme.breakpoints.up('md')]: {
-        minHeight: '64px',
+        minHeight: '54px',
       },
-    }
+    },
   })
 );
 
@@ -68,27 +71,40 @@ const Header: React.FC<any> = ({ user, setUser, open, setOpen }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed"
+      <AppBar position="static"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
         <Toolbar className={classes.toolBar} variant="dense">
-          { user !== '' ?
-          <IconButton
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          : null}
+          {user !== '' ?
+            <IconButton
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open,
+              })}
+            >
+              <MenuIcon />
+            </IconButton>
+            : null}
           <Typography variant="h5" className={classes.typography}>
             Developer Portfolio
           </Typography>
+          <FormGroup>
+            <FormControlLabel
+              control={<Switch  aria-label="login switch" />}
+              label={'Light'}
+            />
+          </FormGroup>
+          {user !== '' ?
+            <Button style={{color:"#fff"}}>Logout</Button>
+            :
+            <Login setUser={setUser}/>
+            
+          }
+
         </Toolbar>
       </AppBar>
     </div>

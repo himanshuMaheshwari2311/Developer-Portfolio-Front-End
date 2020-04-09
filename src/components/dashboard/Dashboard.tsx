@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     cardStyle: {
         background: "#fff",
     },
-    cardCategory: {
+    cardCategory: { 
         color: theme.palette.primary.main,
         margin: "0",
         fontSize: "12px",
@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme => ({
 
 
 const Dashboard: React.FC = () => {
-    const classes = useStyles();
+    const classes = useStyles(); 
+    
     return (
         <div className={classes.root}>
             <Grid container justify="center" alignContent="center" spacing={3} className={classes.gridContainer}>

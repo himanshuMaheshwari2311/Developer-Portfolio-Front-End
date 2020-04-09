@@ -80,6 +80,18 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'flex-end',
             padding: theme.spacing(0, 1),
             ...theme.mixins.toolbar,
+            [theme.breakpoints.up('lg')]: {
+                minHeight: '54px',
+            },
+            [theme.breakpoints.up('xs')]: {
+                minHeight: '46px',
+            },
+            [theme.breakpoints.up('sm')]: {
+                minHeight: '54px',
+            },
+            [theme.breakpoints.up('md')]: {
+                minHeight: '54px',
+            },
         },
         content: {
             flexGrow: 1,
@@ -128,14 +140,14 @@ const Sidebar: React.FC<any> = ({ open, setOpen, user, setUser, history }) => {
                 >
                     <div className={classes.toolbar}>
                         <IconButton onClick={handleDrawerClose} >
-                            {open ? <ChevronLeftIcon className={classes.iconButton}/> : <ChevronRightIcon className={classes.iconButton}/>}
+                            {open ? <ChevronLeftIcon className={classes.iconButton} /> : <ChevronRightIcon className={classes.iconButton} />}
                         </IconButton>
                     </div>
                     <Divider />
                     <List >
-                        {[{ label: 'Dashboard', component: <HomeIcon className={classes.iconButton}/>, route: '/dashboard' }, { label: 'Account', component: <AccountBoxIcon className={classes.iconButton}/>, route: '/account' }, { label: 'Profile', component: <FileCopyIcon className={classes.iconButton}/>, route: '/profile' }].map((listItem, index) => (
+                        {[{ label: 'Dashboard', component: <HomeIcon className={classes.iconButton} />, route: '/dashboard' }, { label: 'Accounts', component: <AccountBoxIcon className={classes.iconButton} />, route: '/account' }, { label: 'Github', component: <AccountBoxIcon className={classes.iconButton} />, route: '/github' }, { label: 'Stackoverflow', component: <AccountBoxIcon className={classes.iconButton} />, route: '/stackoverflow' }, { label: 'LinkedIn', component: <AccountBoxIcon className={classes.iconButton} />, route: '/linkedin' }, { label: 'Medium', component: <AccountBoxIcon className={classes.iconButton} />, route: '/medium' }, { label: 'Profile', component: <FileCopyIcon className={classes.iconButton} />, route: '/profile' }].map((listItem, index) => (
                             <ListItem button key={index} >
-                                <ListItemIcon onClick={() => { route(listItem.route) } }>{listItem.component}</ListItemIcon>
+                                <ListItemIcon onClick={() => { route(listItem.route) }}>{listItem.component}</ListItemIcon>
                                 <ListItemText primary={listItem.label} color="inherit" />
                             </ListItem>
                         ))}
