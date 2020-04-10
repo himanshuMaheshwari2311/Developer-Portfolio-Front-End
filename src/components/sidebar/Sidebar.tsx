@@ -1,3 +1,6 @@
+import { faGithub, faLinkedin, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
+import { faChartBar, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
@@ -10,8 +13,6 @@ import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/sty
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import FileCopyIcon from '@material-ui/icons/FileCopy'
-import HomeIcon from '@material-ui/icons/Home'
 import clsx from 'clsx'
 import React from 'react'
 import { withRouter } from 'react-router-dom'
@@ -80,6 +81,18 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'flex-end',
             padding: theme.spacing(0, 1),
             ...theme.mixins.toolbar,
+            [theme.breakpoints.up('lg')]: {
+                minHeight: '54px',
+            },
+            [theme.breakpoints.up('xs')]: {
+                minHeight: '46px',
+            },
+            [theme.breakpoints.up('sm')]: {
+                minHeight: '54px',
+            },
+            [theme.breakpoints.up('md')]: {
+                minHeight: '54px',
+            },
         },
         content: {
             flexGrow: 1,
@@ -91,7 +104,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         iconButton: {
             color: theme.palette.secondary.main,
-            fontSize: "24px",
+            fontSize: "22px",
         }
     })
 );
@@ -128,14 +141,20 @@ const Sidebar: React.FC<any> = ({ open, setOpen, user, setUser, history }) => {
                 >
                     <div className={classes.toolbar}>
                         <IconButton onClick={handleDrawerClose} >
-                            {open ? <ChevronLeftIcon className={classes.iconButton}/> : <ChevronRightIcon className={classes.iconButton}/>}
+                            {open ? <ChevronLeftIcon className={classes.iconButton} /> : <ChevronRightIcon className={classes.iconButton} />}
                         </IconButton>
                     </div>
                     <Divider />
                     <List >
-                        {[{ label: 'Dashboard', component: <HomeIcon className={classes.iconButton}/>, route: '/dashboard' }, { label: 'Account', component: <AccountBoxIcon className={classes.iconButton}/>, route: '/account' }, { label: 'Profile', component: <FileCopyIcon className={classes.iconButton}/>, route: '/profile' }].map((listItem, index) => (
+                        {[{ label: 'Dashboard', component: <FontAwesomeIcon icon={faChartBar} className={classes.iconButton} />, route: '/dashboard' },
+                        { label: 'Accounts', component: <AccountBoxIcon className={classes.iconButton} />, route: '/account' },
+                        { label: 'Github', component: <FontAwesomeIcon icon={faGithub} className={classes.iconButton} />, route: '/github' },
+                        { label: 'Stackoverflow', component: <FontAwesomeIcon icon={faStackOverflow} className={classes.iconButton} />, route: '/stackoverflow' },
+                        { label: 'LinkedIn', component: <FontAwesomeIcon icon={faLinkedin} className={classes.iconButton} />, route: '/linkedin' },
+                        { label: 'Medium', component: <FontAwesomeIcon icon={faMedium} className={classes.iconButton} />, route: '/medium' },
+                        { label: 'Profile', component: <FontAwesomeIcon icon={faUser} className={classes.iconButton} />, route: '/profile' }].map((listItem, index) => (
                             <ListItem button key={index} >
-                                <ListItemIcon onClick={() => { route(listItem.route) } }>{listItem.component}</ListItemIcon>
+                                <ListItemIcon onClick={() => { route(listItem.route) }}>{listItem.component}</ListItemIcon>
                                 <ListItemText primary={listItem.label} color="inherit" />
                             </ListItem>
                         ))}
