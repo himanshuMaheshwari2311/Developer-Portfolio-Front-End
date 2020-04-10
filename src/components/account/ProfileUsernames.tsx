@@ -5,11 +5,7 @@ import Step from '@material-ui/core/Step';
 import StepConnector from '@material-ui/core/StepConnector';
 import StepLabel from '@material-ui/core/StepLabel';
 import Stepper from '@material-ui/core/Stepper';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -18,6 +14,9 @@ import github from './../../assets/github.svg';
 import linkedin from './../../assets/linkedin.svg';
 import medium from './../../assets/medium.png';
 import stackoverflow from './../../assets/stackoverflow.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { createStyles, makeStyles, withStyles, Theme, useTheme } from '@material-ui/core/styles'
+import { faGithub, faLinkedin, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 
 const ColorlibConnector = withStyles({
     alternativeLabel: {
@@ -43,7 +42,8 @@ const ColorlibConnector = withStyles({
     },
 })(StepConnector);
 
-const useColorlibStepIconStyles = makeStyles({
+const useColorlibStepIconStyles = makeStyles( (theme: Theme) => 
+createStyles({
     root: {
         backgroundColor: '#ccccc',
         zIndex: 1,
@@ -64,7 +64,11 @@ const useColorlibStepIconStyles = makeStyles({
         backgroundImage:
             'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
     },
-});
+    iconButton: {
+        color: theme.palette.secondary.main,
+        fontSize: "22px",
+    }
+}));
 
 function ColorlibStepIcon(props: any) {
     const classes = useColorlibStepIconStyles();
@@ -72,10 +76,10 @@ function ColorlibStepIcon(props: any) {
 
 
     const icons: any = {
-        1: <GitHubIcon />,
-        2: <LinkedInIcon />,
-        3: <LinkedInIcon />,
-        4: <VideoLabelIcon />,
+        1: <FontAwesomeIcon icon={faGithub} className={classes.iconButton}/>,
+        2: <FontAwesomeIcon icon={faLinkedin} className={classes.iconButton}/>,
+        3: <FontAwesomeIcon icon={faStackOverflow} className={classes.iconButton} />,
+        4: <FontAwesomeIcon icon={faMedium} className={classes.iconButton} />,
     };
 
     return (
@@ -154,10 +158,7 @@ function getSteps(profilesSelected: any) {
 }
 
 function ProfileUsernames(props: any) {
-
-
     const [activeStep, setActiveStep] = React.useState(0);
-
     const [username, setValue] = React.useState('');
     const [usernames, setUsernames] = React.useState([{}] as any);
     const classes = useStyles();
@@ -167,9 +168,8 @@ function ProfileUsernames(props: any) {
     const handleNext = (event: any) => {
         /* network call to verify whether the entered url is coreeect or not, if correct*/
         setUsernames((prevUsernames: any[]) => [...prevUsernames, { "profile": steps[activeStep].name, "username": username }]);
-        (activeStep !== steps.length)
-            ? setActiveStep((prevActiveStep) => prevActiveStep + 1)
-            : console.log("ji")
+        if(activeStep !== steps.length)
+            setActiveStep((prevActiveStep) => prevActiveStep + 1)        
         setValue('');
     };
 
