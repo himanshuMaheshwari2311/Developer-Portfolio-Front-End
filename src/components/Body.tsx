@@ -7,9 +7,6 @@ import Dashboard from './dashboard/Dashboard'
 import Home from './Home'
 import LandingPage from './LandingPage'
 import Sidebar from './sidebar/Sidebar'
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import ProfileIcons from './account/ProfileIcons'
 import ProfileUsernames from './account/ProfileUsernames'
 
 const useStyles = makeStyles(theme => ({
@@ -78,7 +75,7 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
             <ProfileUsernames />
           </Route>
           <Route exact path="/account">
-            <Home />
+            <ProfileUsernames />
           </Route>
         </Switch>
       </div>
