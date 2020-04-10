@@ -9,7 +9,7 @@ import github from './../../assets/github.svg';
 import linkedin from './../../assets/linkedin.svg';
 import medium from './../../assets/medium.png';
 import stackoverflow from './../../assets/stackoverflow.png';
-
+import { withRouter, RouteComponentProps} from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     root:{
         display: 'block',
@@ -85,17 +85,12 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
- const  ProfileIcons =() =>  {
-    const styles = useStyles();  
-    let [profilesSelected, setSelectedProfiles] = React.useState([] as any) ;    
-    // let profileObject =[
-    //    {"url" :  github, "iconName": "Github"},
-    //    {"url" :  linkedin, "iconName": "Linkedin"},
-    //    {"url" :  medium, "iconName": "Medium"},
-    //    {"url" :  stackoverflow, "iconName": "Stackoverflow"},
-    // ];
-
+const ProfileIcons: React.FC<RouteComponentProps> =  ({ history })  =>  {
+    const styles = useStyles(); 
+    const [profilesSelected, setSelectedProfiles] = React.useState([] as any) ;    
+    
     const clickProfileIcons = (event: any) =>{
+        //console.log(props)
         let newProfileSelected = event.target.alt;
          setSelectedProfiles((prevProfilesSelected : any[] )=> {
              if(prevProfilesSelected.includes(newProfileSelected))
@@ -114,30 +109,40 @@ const useStyles = makeStyles((theme) => ({
                  <div className={styles.iconsContainer}>
                      <Avatar
                       onClick={clickProfileIcons} 
-                      alt="github" data-attr="github" variant="circle"
+                      alt="Github"  variant="circle"
                       src={github} 
-                      className = { profilesSelected.includes("github") ? styles.iconsSelected :  styles.icons }  />
+                      className = { profilesSelected.includes("Github") ? styles.iconsSelected :  styles.icons }  />
     
                      <Avatar 
                       onClick={clickProfileIcons}
-                      alt="linkedin" data-attr="linkedin" variant="circle" 
+                      alt="Linkedin"  variant="circle" 
                       src={linkedin} 
-                      className = { profilesSelected.includes("linkedin") ? styles.iconsSelected :  styles.icons } />
+                      className = { profilesSelected.includes("Linkedin") ? styles.iconsSelected :  styles.icons } />
 
                      <Avatar
                       onClick={clickProfileIcons} 
-                      alt="medium" data-attr="medium" variant="circle"
+                      alt="Medium" variant="circle"
                       src={medium} 
-                      className = { profilesSelected.includes("medium") ? styles.iconsSelected :  styles.icons }  /> 
+                      className = { profilesSelected.includes("Medium") ? styles.iconsSelected :  styles.icons }  /> 
 
                      <Avatar 
                      onClick={clickProfileIcons} 
-                     alt="stackoverflow" data-attr="stackoverflow" variant="circle"
+                     alt="Stackoverflow" variant="circle"
                       src={stackoverflow} 
-                      className = { profilesSelected.includes("stackoverflow") ? styles.iconsSelected :  styles.icons }  /> 
+                      className = { profilesSelected.includes("Stackoverflow") ? styles.iconsSelected :  styles.icons }  /> 
                  </div>
 
-                 <Button variant="contained" className={styles.button} color="primary">
+                 <Button
+                     variant="contained" 
+                     className={styles.button}
+                     disabled={profilesSelected.length === 0} 
+                     onClick={() => { 
+                        history.push({
+                            pathname: '/profileUsernames',
+                            state: { profilesSelected: profilesSelected}
+                        });
+                      }} 
+                    color="primary">
                     Build Portfolio
                 </Button>
             </div>         
@@ -146,4 +151,4 @@ const useStyles = makeStyles((theme) => ({
     
 }
 
-export default ProfileIcons;
+export default withRouter(ProfileIcons);
