@@ -1,6 +1,6 @@
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
-import { createStyles, makeStyles, Theme, fade } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -15,6 +15,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      display: 'flex',
       flexGrow: 1,
     },
     appBar: {
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Header: React.FC<any> = ({ user, setUser, open, setOpen }) => {
+const Header: React.FC<any> = ({ user, setUser, open, setOpen, history }) => {
 
   const classes = useStyles();
 
@@ -69,9 +70,15 @@ const Header: React.FC<any> = ({ user, setUser, open, setOpen }) => {
     setOpen(true);
   };
 
+  const logoutAction = () => {
+    setUser('');
+    localStorage.removeItem("userId");
+    history.push("/");
+  }
+
   return (
     <div className={classes.root}>
-      <AppBar position="static"
+      <AppBar position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -94,17 +101,15 @@ const Header: React.FC<any> = ({ user, setUser, open, setOpen }) => {
           </Typography>
           <FormGroup>
             <FormControlLabel
-              control={<Switch  aria-label="login switch" />}
+              control={<Switch aria-label="login switch" />}
               label={'Light'}
             />
           </FormGroup>
           {user !== '' ?
-            <Button style={{color:"#fff"}}>Logout</Button>
+            <Button style={{ color: "#fff" }} onClick={logoutAction}>Logout</Button>
             :
-            <Login setUser={setUser}/>
-            
+            <Login setUser={setUser} />
           }
-
         </Toolbar>
       </AppBar>
     </div>

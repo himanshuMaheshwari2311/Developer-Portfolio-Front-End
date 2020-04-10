@@ -1,22 +1,25 @@
-import { Grid, Card, CardHeader, IconButton } from '@material-ui/core';
+import { faGithub, faLinkedin, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Card, CardHeader, Grid, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons';
-import HighChartPie from './charts/HighChartPie'
 import HighChartComponent from './charts/HighChartComponent';
+import HighChartPie from './charts/HighChartPie';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
         flexGrow: 1,
+        flex: 1,
     },
     iconStyle: {
         fontSize: "36px",
     },
     gridContainer: {
         margin: "5px",
+        flex: 1,
     },
     cardStyle: {
         background: "#fff",
@@ -37,7 +40,7 @@ const Dashboard: React.FC = () => {
     
     return (
         <div className={classes.root}>
-            <Grid container justify="center" alignContent="center" spacing={3} className={classes.gridContainer}>
+            <Grid container spacing={3} className={classes.gridContainer}>
                 <Grid item xs={12} sm={6} md={3}>
                     <Card className={classes.cardStyle}>
                         <CardHeader action={

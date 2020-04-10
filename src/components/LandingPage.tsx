@@ -1,8 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Grid, makeStyles, Card, CardHeader, IconButton } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { Grid, makeStyles} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,6 +24,9 @@ const useStyles = makeStyles(theme => ({
         paddingTop: "10px",
         marginBottom: "0"
     },
+    mainSideImage: {
+        backgroundImage: '../assests/download.jpg',
+    }
 }));
 
 const LandingPage: React.FC = () => {
@@ -33,7 +34,7 @@ const LandingPage: React.FC = () => {
     return (
         <div className={classes.root}>
             <Grid container className={classes.gridContainer}>
-                <Grid item xs={12} sm={12} md={12}>
+                <Grid item xs={12} sm={12} md={12} className={classes.mainSideImage}>
                     
                 </Grid>
             </Grid>

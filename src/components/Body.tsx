@@ -1,13 +1,12 @@
+import { makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Login from './Login'
-import Sidebar from './sidebar/Sidebar'
+import ProfileIcons from './account/ProfileIcons'
 import Dashboard from './dashboard/Dashboard'
 import Home from './Home'
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import ProfileIcons from './account/ProfileIcons'
 import LandingPage from './LandingPage'
+import Sidebar from './sidebar/Sidebar'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,7 +56,7 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
         [styles.contentShift]: open,
       })} style={{ marginLeft: user !== '' ? (open ? '240px' : '60px') : '0px' }}>
         <Switch>
-          <Route exact path={["/", "/home", '/dashboard']}>
+          <Route exact path={["/", '/dashboard']}>
             {userId !== null ?
               <Dashboard />
               :
