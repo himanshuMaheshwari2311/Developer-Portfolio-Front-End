@@ -95,6 +95,17 @@ const Dashboard: React.FC = () => {
                         <HighChartComponent />
                     </Card>
                 </Grid>
+                
+                <Grid item xs={12} sm={12} md={6}>
+                    <Card>
+                        <HighChartPie />
+                    </Card>
+                </Grid>
+                <Grid item xs={12} sm={12} md={6}>
+                    <Card>
+                        <HighChartComponent />
+                    </Card>
+                </Grid>
             </Grid>
         </div>
     )

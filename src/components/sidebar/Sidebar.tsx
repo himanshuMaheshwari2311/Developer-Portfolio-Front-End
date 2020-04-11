@@ -109,7 +109,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const Sidebar: React.FC<any> = ({ open, setOpen, user, setUser, history }) => {
+const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
 
     const classes = useStyles();
     // eslint-disable-next-line

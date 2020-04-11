@@ -3,11 +3,11 @@ import clsx from 'clsx'
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import ProfileIcons from './account/ProfileIcons'
-import Dashboard from './dashboard/Dashboard'
-import Home from './Home'
-import LandingPage from './LandingPage'
-import Sidebar from './sidebar/Sidebar'
 import ProfileUsernames from './account/ProfileUsernames'
+import Dashboard from './dashboard/Dashboard'
+import LandingPage from './landing-page/LandingPage'
+import Sidebar from './sidebar/Sidebar'
+import Home from './Home'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,8 +23,8 @@ const useStyles = makeStyles(theme => ({
       height: 'calc(100vh - 54px)'
     },
     [theme.breakpoints.up('sm')]: {
-      marginTop: '64px',
-      height: 'calc(100vh - 64px)'
+      marginTop: '54px',
+      height: 'calc(100vh - 54px)'
     },
   },
   content: {
@@ -61,11 +61,10 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
             {userId !== null ?
               <Dashboard />
               :
-              <LandingPage />
+              <LandingPage setUser={setUser}/>
             }
           </Route>
           <Route exact path="/login">
-            {/* <Login setUser={setUser} /> */}
             <LandingPage/>
           </Route>
           <Route exact path="/profile">
@@ -75,7 +74,7 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
             <ProfileUsernames />
           </Route>
           <Route exact path="/account">
-            <ProfileUsernames />
+            <Home />
           </Route>
         </Switch>
       </div>

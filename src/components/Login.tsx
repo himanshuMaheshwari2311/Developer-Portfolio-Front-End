@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         color: '#fff !important',
         '&:hover': {
             backgroundColor: 'transparent !important',
-        }
+        },
     },
 }));
 
@@ -51,8 +51,7 @@ const Login: React.FC<any> = ({ setUser, history }) => {
     return (
         <GoogleLogin
             clientId="865958668201-3upung40a7uuidhh47hp34v91rggsgl8.apps.googleusercontent.com"
-            buttonText="Login"
-            icon = {false}
+            buttonText="Login with Google"
             onSuccess={loginAction}
             onFailure={retryAction}
             cookiePolicy={'single_host_origin'}

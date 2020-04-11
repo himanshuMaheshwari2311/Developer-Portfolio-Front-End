@@ -28,7 +28,7 @@ const light = createMuiTheme({
       main: blue[600],
     },
     secondary: {
-      main: blue[50],
+      main: '#fff',
     },
     background: {
       default: blue[50],

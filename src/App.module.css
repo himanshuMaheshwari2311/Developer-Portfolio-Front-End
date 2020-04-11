@@ -1,12 +1,24 @@
-/* .mainContent {
-  margin-top: 65px;
-  height: calc(100vh - 85px);
-  overflow-y: auto;
-} */
-
-
-@media screen and (min-width: 480px){
-  .disableAfterLimit{
-    display: none;
-  }
+.typewriter{
+  color: #fff;
+  font-family: monospace;
+  overflow: hidden;
+  border-right: .15em solid orange;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: 
+    typing 1.5s steps(30, end),
+    blink-caret .5s step-end infinite;
 }
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 500px }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: transparent }
+}
+

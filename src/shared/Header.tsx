@@ -8,7 +8,6 @@ import clsx from 'clsx';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { FormGroup, FormControlLabel, Switch, Button } from '@material-ui/core';
-import Login from '../components/Login';
 
 const drawerWidth = 240;
 
@@ -108,7 +107,7 @@ const Header: React.FC<any> = ({ user, setUser, open, setOpen, history }) => {
           {user !== '' ?
             <Button style={{ color: "#fff" }} onClick={logoutAction}>Logout</Button>
             :
-            <Login setUser={setUser} />
+            null
           }
         </Toolbar>
       </AppBar>
