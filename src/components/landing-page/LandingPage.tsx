@@ -1,10 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import MainSection from './MainSection';
-import Feature from './Feature';
 import AboutUs from './AboutUs';
-import { faAutoprefixer } from '@fortawesome/free-brands-svg-icons';
+import Feature from './Feature';
+import MainSection from './MainSection';
 
 const useStyles = makeStyles((theme) => ({
     root: {
