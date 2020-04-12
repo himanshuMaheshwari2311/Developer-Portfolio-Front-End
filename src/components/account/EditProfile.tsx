@@ -26,8 +26,8 @@ const useStyles = makeStyles(theme => ({
         top:`10%`,
         position: `relative`,
         margin:`auto`,  
-        width: 80,
-        height: 80,  
+        width: 120,
+        height: 120,  
         padding: theme.spacing(2),    
         [theme.breakpoints.up('sm')]: {
             width: 170,
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     },
     userName: {
         padding: theme.spacing(2),
-        marginTop: theme.spacing(4),
+        marginTop: theme.spacing(8),
         position: `relative`,
         fontWeight: `bolder`,
         textAlign: `center`,
@@ -44,7 +44,6 @@ const useStyles = makeStyles(theme => ({
         fontFamily: `medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif`,
         [theme.breakpoints.up('sm')]: {
             fontSize: `2rem`,
-            //padding: theme.spacing(2),
             marginTop: theme.spacing(8),
         },   
 
@@ -105,7 +104,7 @@ const EditProfile: React.FC<RouteComponentProps> =  ({ history })  =>  {
     return (
         <React.Fragment>
         <CssBaseline />
-        <Container  maxWidth="xs" className={styles.formContainer}>   
+        <Container  maxWidth="sm" className={styles.formContainer}>   
         <Tooltip title="Change your avatar" arrow>
         <Avatar className={styles.icon}
             alt="profilepicture" src={avatar} variant="circle" />
