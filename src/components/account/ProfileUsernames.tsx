@@ -1,3 +1,5 @@
+import { faGithub, faLinkedin, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -5,6 +7,7 @@ import Step from '@material-ui/core/Step';
 import StepConnector from '@material-ui/core/StepConnector';
 import StepLabel from '@material-ui/core/StepLabel';
 import Stepper from '@material-ui/core/Stepper';
+import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -14,9 +17,6 @@ import github from './../../assets/github.svg';
 import linkedin from './../../assets/linkedin.svg';
 import medium from './../../assets/medium.png';
 import stackoverflow from './../../assets/stackoverflow.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { createStyles, makeStyles, withStyles, Theme, useTheme } from '@material-ui/core/styles'
-import { faGithub, faLinkedin, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 
 const ColorlibConnector = withStyles({
     alternativeLabel: {

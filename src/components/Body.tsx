@@ -7,7 +7,7 @@ import ProfileUsernames from './account/ProfileUsernames'
 import Dashboard from './dashboard/Dashboard'
 import LandingPage from './landing-page/LandingPage'
 import Sidebar from './sidebar/Sidebar'
-import Home from './Home'
+import Github from './github/Github'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -61,11 +61,11 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
             {userId !== null ?
               <Dashboard />
               :
-              <LandingPage setUser={setUser}/>
+              <LandingPage setUser={setUser} />
             }
           </Route>
           <Route exact path="/login">
-            <LandingPage/>
+            <LandingPage />
           </Route>
           <Route exact path="/profile">
             <ProfileIcons />
@@ -73,8 +73,8 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
           <Route exact path="/profileUsernames">
             <ProfileUsernames />
           </Route>
-          <Route exact path="/account">
-            <Home />
+          <Route exact path="/github">
+            <Github />
           </Route>
         </Switch>
       </div>
