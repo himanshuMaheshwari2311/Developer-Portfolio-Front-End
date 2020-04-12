@@ -8,6 +8,7 @@ import Home from './Home'
 import LandingPage from './LandingPage'
 import Sidebar from './sidebar/Sidebar'
 import ProfileUsernames from './account/ProfileUsernames'
+import EditProfile from './account/EditProfile'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -69,13 +70,13 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
             <LandingPage/>
           </Route>
           <Route exact path="/profile">
-            <ProfileIcons />
+            <EditProfile />
           </Route>
           <Route exact path="/profileUsernames">
             <ProfileUsernames />
           </Route>
           <Route exact path="/account">
-            <ProfileUsernames />
+            <ProfileIcons />
           </Route>
         </Switch>
       </div>
