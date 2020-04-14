@@ -3,6 +3,7 @@
 import { Button } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
+
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import github from './../../assets/github.svg';
@@ -20,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexGrow: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        padding: theme.spacing(3),
+        alignItems: 'center',   
         [theme.breakpoints.up('xs')]: {
-            flexDirection: 'row'
+            flexDirection: 'row',
+            padding: theme.spacing(3),
         },
         [theme.breakpoints.down('sm')]: {
             flexDirection: 'column',
@@ -36,9 +37,9 @@ const useStyles = makeStyles((theme) => ({
             margin: theme.spacing(5), 
         },
         [theme.breakpoints.down('sm')]: {
-            width: 120,
-            height: 120,
-           // margin: theme.spacing(2), 
+            width: 140,
+            height: 140,
+            margin: theme.spacing(2), 
         },
         
         
@@ -60,21 +61,20 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '50%',
 
         outline: 'none',
-       // border: '1px solid #c0392b',
         color: '#c0392b'
     },
 
-    title:{
-        align: 'center',
-        fontSize: '1.7em',
-        display: 'block',
+    title:{  
+        marginTop: `8%`,
+        fontSize: '1.1rem',
         textAlign: 'center',
-        padding: theme.spacing(7),
+        whiteSpace: 'inherit',
         [theme.breakpoints.up('sm')]: {
             padding: theme.spacing(10), 
+            marginTop: `0%`,
+            fontSize: '1.7rem',
         },  
-        fontWeight: 'bolder',
-        whiteSpace: 'inherit'
+       
     },
     button: {
         float: 'right',
@@ -87,10 +87,9 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfileIcons: React.FC<RouteComponentProps> =  ({ history })  =>  {
     const styles = useStyles(); 
-    const [profilesSelected, setSelectedProfiles] = React.useState([] as any) ;    
-    
+    const [profilesSelected, setSelectedProfiles] = React.useState([] as any) ;   
+
     const clickProfileIcons = (event: any) =>{
-        //console.log(props)
         let newProfileSelected = event.target.alt;
          setSelectedProfiles((prevProfilesSelected : any[] )=> {
              if(prevProfilesSelected.includes(newProfileSelected))
@@ -99,54 +98,52 @@ const ProfileIcons: React.FC<RouteComponentProps> =  ({ history })  =>  {
                 return [...prevProfilesSelected, newProfileSelected]
         })
     }   
-        return (
-            <div className={styles.root}>
-                 <Typography variant="h6" noWrap className={styles.title}> 
-                 Select the profiles you want to add in your portfolio!
-                 </Typography>
-                
-                {/* <h1> Select the profiles you want to add in your portfolio!</h1> */}
-                 <div className={styles.iconsContainer}>
-                     <Avatar
-                      onClick={clickProfileIcons} 
-                      alt="Github"  variant="circle"
-                      src={github} 
-                      className = { profilesSelected.includes("Github") ? styles.iconsSelected :  styles.icons }  />
-    
-                     <Avatar 
-                      onClick={clickProfileIcons}
-                      alt="Linkedin"  variant="circle" 
-                      src={linkedin} 
-                      className = { profilesSelected.includes("Linkedin") ? styles.iconsSelected :  styles.icons } />
+    return (
+        <div className={styles.root}>
+                <Typography variant="h6" noWrap className={styles.title}> 
+                <strong> Select profiles to create your portfolio</strong>
+                </Typography>
+                <div className={styles.iconsContainer}>
+                    <Avatar
+                    onClick={clickProfileIcons} 
+                    alt="Github"  variant="circle"
+                    src={github} 
+                    className = { profilesSelected.includes("Github") ? styles.iconsSelected :  styles.icons }  />
 
-                     <Avatar
-                      onClick={clickProfileIcons} 
-                      alt="Medium" variant="circle"
-                      src={medium} 
-                      className = { profilesSelected.includes("Medium") ? styles.iconsSelected :  styles.icons }  /> 
+                    <Avatar 
+                    onClick={clickProfileIcons}
+                    alt="Linkedin"  variant="circle" 
+                    src={linkedin} 
+                    className = { profilesSelected.includes("Linkedin") ? styles.iconsSelected :  styles.icons } />
 
-                     <Avatar 
-                     onClick={clickProfileIcons} 
-                     alt="Stackoverflow" variant="circle"
-                      src={stackoverflow} 
-                      className = { profilesSelected.includes("Stackoverflow") ? styles.iconsSelected :  styles.icons }  /> 
-                 </div>
+                    <Avatar
+                    onClick={clickProfileIcons} 
+                    alt="Medium" variant="circle"
+                    src={medium} 
+                    className = { profilesSelected.includes("Medium") ? styles.iconsSelected :  styles.icons }  /> 
 
-                 <Button
-                     variant="contained" 
-                     className={styles.button}
-                     disabled={profilesSelected.length === 0} 
-                     onClick={() => { 
-                        history.push({
-                            pathname: '/profileUsernames',
-                            state: { profilesSelected: profilesSelected}
-                        });
-                      }} 
-                    color="primary">
-                    Build Portfolio
-                </Button>
-            </div>         
-        );
+                    <Avatar 
+                    onClick={clickProfileIcons} 
+                    alt="Stackoverflow" variant="circle"
+                    src={stackoverflow} 
+                    className = { profilesSelected.includes("Stackoverflow") ? styles.iconsSelected :  styles.icons }  /> 
+                </div>
+
+                <Button
+                    variant="contained" 
+                    className={styles.button}
+                    disabled={profilesSelected.length === 0} 
+                    onClick={() => { 
+                    history.push({
+                        pathname: '/profileUsernames',
+                        state: { profilesSelected: profilesSelected}
+                    });
+                    }} 
+                color="primary">
+                Build Portfolio
+            </Button>
+        </div>         
+    );
 
     
 }
