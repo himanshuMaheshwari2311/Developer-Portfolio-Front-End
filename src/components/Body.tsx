@@ -2,14 +2,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import ProfileIcons from './account/ProfileIcons'
-import ProfileUsernames from './account/ProfileUsernames'
 import Dashboard from './dashboard/Dashboard'
 import LandingPage from './landing-page/LandingPage'
 import Sidebar from './sidebar/Sidebar'
 import Github from './github/Github'
-import Home from './Home'
 import EditProfile from './account/EditProfile'
+import ProfileIcons from './account/ProfileIcons'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -72,8 +70,8 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
           <Route exact path="/profile">
             <EditProfile />
           </Route>
-          <Route exact path="/profileUsernames">
-            <ProfileUsernames />
+          <Route exact path="/account">
+            <ProfileIcons />
           </Route>
           <Route exact path="/github">
             <Github />
