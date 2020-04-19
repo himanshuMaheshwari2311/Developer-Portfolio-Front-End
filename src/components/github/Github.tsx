@@ -111,10 +111,6 @@ const Github: React.FC = () => {
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
     return (
         <div className={classes.root}>
             <Grid container spacing={1} className={classes.gridContainer}>

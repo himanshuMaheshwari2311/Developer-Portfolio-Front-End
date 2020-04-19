@@ -1,4 +1,4 @@
-import { faGithub, faLinkedin, faMedium, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faLinkedin, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 import { faChartBar, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -151,7 +151,6 @@ const Sidebar: React.FC<any> = ({ open, setOpen, history }) => {
                         { label: 'Github', component: <FontAwesomeIcon icon={faGithub} className={classes.iconButton} />, route: '/github' },
                         { label: 'Stackoverflow', component: <FontAwesomeIcon icon={faStackOverflow} className={classes.iconButton} />, route: '/stackoverflow' },
                         { label: 'LinkedIn', component: <FontAwesomeIcon icon={faLinkedin} className={classes.iconButton} />, route: '/linkedin' },
-                        { label: 'Medium', component: <FontAwesomeIcon icon={faMedium} className={classes.iconButton} />, route: '/medium' },
                         { label: 'Profile', component: <FontAwesomeIcon icon={faUser} className={classes.iconButton} />, route: '/profile' }].map((listItem, index) => (
                             <ListItem button key={index} >
                                 <ListItemIcon onClick={() => { route(listItem.route) }}>{listItem.component}</ListItemIcon>

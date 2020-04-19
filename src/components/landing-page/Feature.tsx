@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 const cards = [{ 'key': 1, 'heading': 'Github', 'content': 'This is a media card. You can use this section to describe the content.' },
 { 'key': 2, 'heading': 'Stackoverflow', 'content': 'This is a media card. You can use this section to describe the content.' },
 { 'key': 3, 'heading': 'LinkedIn', 'content': 'This is a media card. You can use this section to describe the content.' },
-{ 'key': 4, 'heading': 'Medium', 'content': 'This is a media card. You can use this section to describe the content.' },]
+]
 
 const Feature: React.FC = () => {
     const classes = useStyles();
@@ -50,7 +50,7 @@ const Feature: React.FC = () => {
                     </Grid>
                 </Grow>
                 {cards.map((card) => (
-                    <Grid item key={card['key']} xs={12} sm={6} md={3} lg={3}>
+                    <Grid item key={card['key']} xs={6} sm={6} md={4} lg={4}>
                         <Grow in={true} timeout={1000 * card['key']}>
                             <Card className={classes.card}>
                                 <CardMedia
