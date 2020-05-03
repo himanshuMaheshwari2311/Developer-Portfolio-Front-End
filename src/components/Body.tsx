@@ -7,7 +7,7 @@ import LandingPage from './landing-page/LandingPage'
 import Sidebar from './sidebar/Sidebar'
 import Github from './github/Github'
 import EditProfile from './account/EditProfile'
-import ProfileIcons from './account/ProfileIcons'
+import Profile from './profile/Profile'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -68,10 +68,10 @@ const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
             <LandingPage />
           </Route>
           <Route exact path="/profile">
-            <EditProfile />
+            <Profile />
           </Route>
           <Route exact path="/account">
-            <ProfileIcons />
+            <EditProfile />
           </Route>
           <Route exact path="/github">
             <Github />
