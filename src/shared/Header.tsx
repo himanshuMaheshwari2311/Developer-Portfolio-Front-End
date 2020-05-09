@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Header: React.FC<any> = ({ user, setUser, open, setOpen, history }) => {
+const Header: React.FC<any> = ({ open, setOpen, history, userInfo, setUserInfo }) => {
 
   const classes = useStyles();
 
@@ -70,8 +70,9 @@ const Header: React.FC<any> = ({ user, setUser, open, setOpen, history }) => {
   };
 
   const logoutAction = () => {
-    setUser('');
-    localStorage.removeItem("userId");
+    setUserInfo({userToken:'', userId:''})
+    localStorage.removeItem("userToken")
+    localStorage.removeItem("userEmailId")
     history.push("/");
   }
 
@@ -83,7 +84,7 @@ const Header: React.FC<any> = ({ user, setUser, open, setOpen, history }) => {
         })}
       >
         <Toolbar className={classes.toolBar} variant="dense">
-          {user !== '' ?
+          {userInfo.userToken !== '' ?
             <IconButton
               aria-label="open drawer"
               onClick={handleDrawerOpen}
@@ -104,7 +105,7 @@ const Header: React.FC<any> = ({ user, setUser, open, setOpen, history }) => {
               label={'Light'}
             />
           </FormGroup>
-          {user !== '' ?
+          {userInfo.userToken !== '' ?
             <Button style={{ color: "#fff" }} onClick={logoutAction}>Logout</Button>
             :
             null

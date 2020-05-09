@@ -3,6 +3,8 @@ import React from 'react';
 import GoogleLogin from 'react-google-login';
 import { withRouter } from 'react-router-dom';
 
+
+
 const useStyles = makeStyles(theme => ({
     googleSignInButton: {
         backgroundColor: 'transparent !important',
@@ -20,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Login: React.FC<any> = ({ setUser, history }) => {
+const Login: React.FC<any> = ({ history, setUserInfo }) => {
     const classes = useStyles();
 
     const loginAction = (response: any) => {
@@ -29,23 +31,21 @@ const Login: React.FC<any> = ({ setUser, history }) => {
                 name: response.profileObj.name,
                 email: response.profileObj.email,
                 imageUrl: response.profileObj.imageUrl,
-                token: response.googleId
+                token: response.googleId,
+                tokenId: response.tokenId
             }
-
-            localStorage.setItem("userId", userAuth.token);
-            setUser(userAuth.token);
+            localStorage.setItem("userToken", userAuth.tokenId);
+            localStorage.setItem("userEmailId", userAuth.email);
+            setUserInfo({userToken: userAuth.tokenId, userEmailId: userAuth.email});
             history.push("/");
 
         } catch (error) {
-            console.log(error);
             history.push("/login");
         }
     }
 
     const retryAction = (response: any) => {
-        console.log(response);
-        history.push("/login");
-
+        history.push("/login")
     }
 
     return (
@@ -56,7 +56,7 @@ const Login: React.FC<any> = ({ setUser, history }) => {
             onFailure={retryAction}
             cookiePolicy={'single_host_origin'}
             className={classes.googleSignInButton}
-        />
+        />      
     );
 
 }

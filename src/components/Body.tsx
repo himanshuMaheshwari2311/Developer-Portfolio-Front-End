@@ -8,7 +8,6 @@ import Sidebar from './sidebar/Sidebar'
 import Github from './github/Github'
 import EditProfile from './account/EditProfile'
 import ProfileIcons from './account/ProfileIcons'
-
 const useStyles = makeStyles(theme => ({
   root: {
     widht: '100%',
@@ -45,27 +44,25 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Body: React.FC<any> = ({ user, setUser, open, setOpen }) => {
+const Body: React.FC<any> = ({open, setOpen, userInfo, setUserInfo }) => {
   const styles = useStyles();
-
-  const userId = localStorage.getItem("userId");
-
   return (
+    
     <div className={styles.root} >
-      {userId === null ? null : <Sidebar open={open} setOpen={setOpen} />}
+      {userInfo.userToken === '' ? null : <Sidebar open={open} setOpen={setOpen} />}
       <div className={clsx(styles.mainContent, {
         [styles.contentShift]: open,
-      })} style={{ marginLeft: user !== '' ? (open ? '240px' : '60px') : '0px' }}>
+      })} style={{ marginLeft: userInfo.userToken !== '' ? (open ? '240px' : '60px') : '0px' }}>
         <Switch>
           <Route exact path={["/", '/dashboard']}>
-            {userId !== null ?
+            {userInfo.userToken  !== '' ?
               <Dashboard />
               :
-              <LandingPage setUser={setUser} />
+              <LandingPage  setUserInfo={setUserInfo} />
             }
           </Route>
           <Route exact path="/login">
-            <LandingPage />
+            <LandingPage  setUserInfo={setUserInfo} />
           </Route>
           <Route exact path="/profile">
             <EditProfile />
