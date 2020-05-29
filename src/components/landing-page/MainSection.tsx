@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const MainSection: React.FC<any> = ({setUser}) => {
+const MainSection: React.FC<any> = ({setUserInfo}) => {
     const classes = useStyles();
     return (
         <Grid container component="main" className={classes.root}>
@@ -51,7 +51,7 @@ const MainSection: React.FC<any> = ({setUser}) => {
                     </Grow>
                     <Grow in={true} timeout={3000}>
                         <div style={{ alignItems: 'center', marginTop: '50px' }}>
-                            <Login setUser={setUser} />
+                            <Login setUserInfo={setUserInfo} />
                         </div>
                     </Grow>
                 </div>

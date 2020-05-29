@@ -18,13 +18,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const LandingPage: React.FC<any> = ({ setUser }) => {
+const LandingPage: React.FC<any> = ({setUserInfo}) => {
     const classes = useStyles();
     return (
 
         <div className={classes.root}>
             <div className={classes.containerStyle}>
-                <MainSection setUser={setUser} />
+                <MainSection setUserInfo={setUserInfo}/>
             </div>
             <div className={classes.containerStyle}>
                 <Feature />

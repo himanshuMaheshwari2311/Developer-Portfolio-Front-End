@@ -4,7 +4,11 @@ import React, { useEffect } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import Body from './components/Body'
 import Header from './shared/Header'
+import axios from 'axios'
 
+
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.common['Content-Type'] = `application/json`;
 // eslint-disable-next-line
 const dark = createMuiTheme({
   palette: {
@@ -39,27 +43,45 @@ const light = createMuiTheme({
 
 
 const App: React.FC<RouteComponentProps> = ({ history }) => {
-
+   
   const [open, setOpen] = React.useState(false);
-  const [user, setUser] = React.useState('');
+  const [userInfo, setUserInfo] = React.useState({ 
+    userToken: '', userEmailId: ''
+  });
 
   useEffect(() => {
-    const userId = localStorage.getItem("userId");
-    if (userId == null) {
+    const userToken = localStorage.getItem("userToken") || '';
+    const userEmailID = localStorage.getItem("userEmailID") || '';
+    if(userToken == null) 
       history.push("/login");
-    }
     else {
-      setUser(userId);
+
+      setUserInfo({userToken: userToken, userEmailId: userEmailID});
       history.push("/");
     }
   }, [history])
 
- 
+  useEffect(() => {
+    const userId = localStorage.getItem("userEmailId");
+    const userToken = localStorage.getItem("userToken");
+    const userData= {
+      emailId : userId
+    } 
+    if(userId !== null && userInfo.userToken!=='') {
+      axios.post('http://localhost:5000/v1/fetch/user-data', userData, {headers: {"Authorization" : `Bearer ${userToken}`}}).then((response: any) => {
+       console.log(response.data)
+      }).catch((error : any) => {
+        console.log(error);
+      })
+    }  
+  }, [userInfo]);
 
   return (
-    <ThemeProvider theme={light}>
-        <Header user={user} setUser={setUser} open={open} setOpen={setOpen}></Header>
-        <Body user={user} setUser={setUser} open={open} setOpen={setOpen} />
+  
+    <ThemeProvider theme={light}> 
+     
+        <Header userInfo={userInfo} setUserInfo={setUserInfo} open={open} setOpen={setOpen}></Header>
+        <Body userInfo={userInfo} setUserInfo={setUserInfo} open={open} setOpen={setOpen} />
     </ThemeProvider>
   )
 }
