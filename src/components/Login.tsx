@@ -31,7 +31,6 @@ const Login: React.FC<any> = ({ setUser, history }) => {
                 imageUrl: response.profileObj.imageUrl,
                 token: response.googleId
             }
-
             localStorage.setItem("userId", userAuth.token);
             setUser(userAuth.token);
             history.push("/");
@@ -56,6 +55,7 @@ const Login: React.FC<any> = ({ setUser, history }) => {
             onFailure={retryAction}
             cookiePolicy={'single_host_origin'}
             className={classes.googleSignInButton}
+            
         />
     );
 
